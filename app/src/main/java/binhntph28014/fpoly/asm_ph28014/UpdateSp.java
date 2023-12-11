@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class UpdateSp extends AppCompatActivity {
 
     SanPham lstSp;
-    EditText edtTen,edtMota,edtgia,edtimg, edStatus;
+    EditText edtTen,edtMota,edtnamsx,edtimg, edStatus;
     Button btnupdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class UpdateSp extends AppCompatActivity {
 
          edtTen = findViewById(R.id.edtTenSPUpdate);
          edtMota= findViewById(R.id.edtMoTaSPUpdate);
-         edtgia = findViewById(R.id.edtGiaSPUpdate);
+         edtnamsx = findViewById(R.id.edttuoiSPUpdate);
         edtimg = findViewById(R.id.edtImgSPUpdate);
          btnupdate = findViewById(R.id.btnUpdate);
          edStatus = findViewById(R.id.edtStatusSPUpdate);
@@ -44,15 +44,11 @@ public class UpdateSp extends AppCompatActivity {
             public void onClick(View view) {
                 String edtten = edtTen.getText().toString();
                 String edtmota = edtMota.getText().toString();
-                String edtGia = edtgia.getText().toString();
+                String edttuoi = edtnamsx.getText().toString();
                 String edtImg = edtimg.getText().toString();
                 String edtStatus = edStatus.getText().toString();
 
-                callApUpSP(_id,edtten ,
-                        edtmota ,
-                        edtGia ,
-                        edtImg,
-                        edtStatus);
+                callApUpSP(_id ,edtten , edttuoi, edtmota , edtStatus, edtImg);
             }
         });
 
@@ -69,10 +65,10 @@ public class UpdateSp extends AppCompatActivity {
 
                     if (lstSp != null) {
 
-                        edtTen.setText(lstSp.getTensv());
-                        edtgia.setText(lstSp.getTuoi());
-                        edStatus.setText(lstSp.getStatus());
-                        edtMota.setText(lstSp.getDiemtb());
+                        edtTen.setText(lstSp.getTensach());
+                        edtnamsx.setText(lstSp.getNamsx());
+                        edStatus.setText(lstSp.getLoaisach());
+                        edtMota.setText(lstSp.getGiaban());
                         edtimg.setText(lstSp.getImage());
 
                     }
@@ -93,9 +89,9 @@ public class UpdateSp extends AppCompatActivity {
     }
 
 
-    private void callApUpSP(String _id,String edtten, String edtImg, String edtGia, String edtmota, String edtstatus){
+    private void callApUpSP(String _id,String edtten, String edttuoi,String edtmota, String edtStatus, String edtImg){
 
-        SanPham sanPham = new SanPham(_id,edtten,edtGia,edtmota, edtstatus,edtImg);
+        SanPham sanPham = new SanPham(_id,edtten,edttuoi,edtmota,edtStatus,edtImg);
         apiService.Apiservice.updateSP(sanPham).enqueue(new Callback<SanPham>() {
             @Override
             public void onResponse(Call<SanPham> call, Response<SanPham> response) {
@@ -120,4 +116,5 @@ public class UpdateSp extends AppCompatActivity {
             }
         });
     }
+
 }

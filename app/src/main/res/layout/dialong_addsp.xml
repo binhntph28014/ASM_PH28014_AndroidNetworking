@@ -20,7 +20,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtTenSP"
             android:layout_marginTop="10dp"
-            android:hint="Tên"
+            android:hint="Tên sách"
             android:drawableRight="@drawable/ic_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -33,7 +33,7 @@
             android:id="@+id/edtGiaSP"
             android:layout_marginTop="10dp"
             android:drawableRight="@drawable/ic_gia"
-            android:hint="Tuổi"
+            android:hint="Năm sản xuất"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtMoTaSP"
             android:layout_marginTop="10dp"
-            android:hint="Điểm tb"
+            android:hint="Giá"
             android:drawableRight="@drawable/ic_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -55,7 +55,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtStatusSP"
             android:layout_marginTop="10dp"
-            android:hint="Status"
+            android:hint="Loại sách"
             android:drawableRight="@drawable/ic_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class ChiTietSanPham extends AppCompatActivity {
     ImageView imganh;
-    TextView txtTenSp,txtGiaSp,txtSoLuongSp,txtMoTaSp, txtStatus;
+    TextView txtTenSach,txtNamSxSP,txtSoLuongSp,txtGiaSachSP, txtLoaiSachSP;
     
     SanPham lstSp;
     @Override
@@ -29,10 +29,10 @@ public class ChiTietSanPham extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_san_pham);
 
         imganh = findViewById(R.id.imgAnh_sanpham_chitiet);
-        txtTenSp = findViewById(R.id.tvTen_sanpham_chitiet);
-        txtGiaSp = findViewById(R.id.tvGia_sanpham_chitiet);
-        txtStatus = findViewById(R.id.txtStatussp);
-        txtMoTaSp = findViewById(R.id.txtMotasp);
+        txtTenSach = findViewById(R.id.tvTen_sanpham_chitiet);
+        txtNamSxSP = findViewById(R.id.tvGia_sanpham_chitiet);
+        txtLoaiSachSP = findViewById(R.id.txtStatussp);
+        txtGiaSachSP = findViewById(R.id.txtMotasp);
         Intent intent = getIntent();
 
         String _id = intent.getStringExtra("_idSp");
@@ -57,10 +57,10 @@ public class ChiTietSanPham extends AppCompatActivity {
 
                     if (lstSp != null) {
 
-                        txtTenSp.setText(lstSp.getTensv());
-                        txtGiaSp.setText(lstSp.getTuoi());
-                        txtStatus.setText(lstSp.getStatus());
-                        txtMoTaSp.setText(lstSp.getDiemtb());
+                        txtTenSach.setText(lstSp.getTensach());
+                        txtNamSxSP.setText(lstSp.getNamsx());
+                        txtLoaiSachSP.setText(lstSp.getLoaisach());
+                        txtGiaSachSP.setText(lstSp.getGiaban());
                         Picasso.get().load(Uri.parse(lstSp.getImage())).into(imganh);
 
                     }

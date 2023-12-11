@@ -64,11 +64,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         }
         String _id = ltsSP.get(position).get_id();
         String imgSrc = ltsSP.get(position).getImage();
-        holder.txtTenSp.setText(sanPham.getTensv());
-        holder.txtMoTaSP.setText(sanPham.getDiemtb());
-        holder.txtStatusSP.setText(sanPham.getStatus());
+        holder.txtTenSp.setText(sanPham.getTensach());
+        holder.txtMoTaSP.setText(sanPham.getGiaban());
+        holder.txtStatusSP.setText(sanPham.getLoaisach());
         //holder.txtSoLuongSP.setText(sanPham.getImage());
-        holder.txtGiaSP.setText(sanPham.getTuoi());
+        holder.txtGiaSP.setText(sanPham.getNamsx());
         Picasso.get().load(Uri.parse(imgSrc)).into(holder.imgSP);
         SharedPreferences sharedPreferences = context.getSharedPreferences("USER_INFO",Context.MODE_PRIVATE);
         String role = sharedPreferences.getString("role","");

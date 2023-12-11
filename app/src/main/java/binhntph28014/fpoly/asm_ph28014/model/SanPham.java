@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName;
 public class SanPham {
 
     private String _id;
-    @SerializedName("tensv")
-    private String tensv;
-    @SerializedName("tuoi")
-    private String tuoi;
-    @SerializedName("status")
-    private String status;
+    @SerializedName("tensach")
+    private String tensach;
+    @SerializedName("namsx")
+    private String namsx;
+    @SerializedName("loaisach")
+    private String loaisach;
     private String image;
-    @SerializedName("diemtb")
-    private String diemtb;
+    @SerializedName("giaban")
+    private String giaban;
 
 
-    public SanPham(String _id, String tensv, String tuoi, String status, String image, String diemtb) {
+    public SanPham(String _id, String tensach, String namsx, String loaisach, String image, String giaban) {
         this._id = _id;
-        this.tensv = tensv;
-        this.tuoi = tuoi;
-        this.status = status;
+        this.tensach = tensach;
+        this.namsx = namsx;
+        this.loaisach = loaisach;
         this.image = image;
-        this.diemtb = diemtb;
+        this.giaban = giaban;
     }
 
     public String get_id() {
@@ -33,28 +33,28 @@ public class SanPham {
         this._id = _id;
     }
 
-    public String getTensv() {
-        return tensv;
+    public String getTensach() {
+        return tensach;
     }
 
-    public void setTensv(String tensv) {
-        this.tensv = tensv;
+    public void setTensach(String tensach) {
+        this.tensach = tensach;
     }
 
-    public String getTuoi() {
-        return tuoi;
+    public String getNamsx() {
+        return namsx;
     }
 
-    public void setTuoi(String tuoi) {
-        this.tuoi = tuoi;
+    public void setNamsx(String namsx) {
+        this.namsx = namsx;
     }
 
-    public String getStatus() {
-        return status;
+    public String getLoaisach() {
+        return loaisach;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLoaisach(String loaisach) {
+        this.loaisach = loaisach;
     }
 
     public String getImage() {
@@ -65,11 +65,11 @@ public class SanPham {
         this.image = image;
     }
 
-    public String getDiemtb() {
-        return diemtb;
+    public String getGiaban() {
+        return giaban;
     }
 
-    public void setDiemtb(String diemtb) {
-        this.diemtb = diemtb;
+    public void setGiaban(String giaban) {
+        this.giaban = giaban;
     }
 }
