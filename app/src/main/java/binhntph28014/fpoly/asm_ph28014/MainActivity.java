@@ -36,9 +36,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     RecyclerView reyc;
     FloatingActionButton btnadd;
-    TextView tensp,giasp,motasp,soluongsp;
+    TextView tensp,giasp,motasp,soluongsp, status;
 
     private List<SanPham> ltsSP;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,15 @@ public class MainActivity extends AppCompatActivity {
         reyc =findViewById(R.id.recyclerView);
         btnadd = findViewById(R.id.floatbtnSanPham);
 
+
+
+
+
         tensp = findViewById(R.id.idTenSanPham);
         giasp = findViewById(R.id.idGiaSanPham);
         motasp = findViewById(R.id.idMoTaSanPham);
+        status = findViewById(R.id.idStatusSanPham);
+
         SharedPreferences sharedPreferences = getSharedPreferences("USER_INFO",MODE_PRIVATE);
         String role = sharedPreferences.getString("role", "");
 
@@ -72,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void callApiGetSP(){
         apiService.Apiservice.getallSP().enqueue(new Callback<List<SanPham>>() {
@@ -136,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         EditText edtMota= view.findViewById(R.id.edtMoTaSP);
         EditText edtgia = view.findViewById(R.id.edtGiaSP);
         EditText edtimg = view.findViewById(R.id.edtImgSP);
+        EditText edtStatus = view.findViewById(R.id.edtStatusSP);
         builder.setView(view);
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
@@ -145,16 +152,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String edtten = edtTen.getText().toString();
-                String edtmota =edtMota.getText().toString();
+                String edtmota = edtMota.getText().toString();
                 String edtGia = edtgia.getText().toString();
                 String edtImg = edtimg.getText().toString();
+                String edStatus = edtStatus.getText().toString();
 
-                callApAddSP(edtten ,
-                edtmota ,
-                edtGia ,
-                edtImg );
-
-
+                callApAddSP(edtten , edtmota , edtGia , edStatus, edtImg);
                         alertDialog.dismiss();
 
                 }
@@ -168,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void callApAddSP(String edtten, String edtImg, String edtGia, String edtmota){
+    private void callApAddSP(String edtten, String edtImg, String edtTuoi, String edtDiemTB, String edtStatus){
 
-        SanPham sanPham = new SanPham(null,edtten,edtGia,edtmota,edtImg);
+        SanPham sanPham = new SanPham(null,edtten,edtTuoi,edtDiemTB,edtStatus,edtImg);
         apiService.Apiservice.addSP(sanPham).enqueue(new Callback<SanPham>() {
             @Override
             public void onResponse(Call<SanPham> call, Response<SanPham> response) {

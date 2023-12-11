@@ -1,6 +1,7 @@
 package binhntph28014.fpoly.asm_ph28014.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -35,6 +37,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
 
 
     private List<SanPham> ltsSP;
+
+
     private Context context;
 
 
@@ -42,6 +46,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         this.ltsSP = ltsSP;
         this.context = context;
     }
+
+
+
     @NonNull
     @Override
     public SanPhamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,10 +64,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         }
         String _id = ltsSP.get(position).get_id();
         String imgSrc = ltsSP.get(position).getImage();
-        holder.txtTenSp.setText(sanPham.getNameproduct());
-        holder.txtMoTaSP.setText(sanPham.getDescription());
+        holder.txtTenSp.setText(sanPham.getTensv());
+        holder.txtMoTaSP.setText(sanPham.getDiemtb());
+        holder.txtStatusSP.setText(sanPham.getStatus());
         //holder.txtSoLuongSP.setText(sanPham.getImage());
-        holder.txtGiaSP.setText(sanPham.getPrice());
+        holder.txtGiaSP.setText(sanPham.getTuoi());
         Picasso.get().load(Uri.parse(imgSrc)).into(holder.imgSP);
         SharedPreferences sharedPreferences = context.getSharedPreferences("USER_INFO",Context.MODE_PRIVATE);
         String role = sharedPreferences.getString("role","");
@@ -74,8 +82,25 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int adapterPosition = holder.getAdapterPosition();
-                callApiXoaSP(_id,adapterPosition);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                        .setMessage("Bạn chắc chắn muốn xóa? ")
+                        .setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                int adapterPosition = holder.getAdapterPosition();
+                                callApiXoaSP(_id,adapterPosition);
+                            }
+                        })
+                        .setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.setCancelable(false);
+                alertDialog.show();
+
             }
         });
 
@@ -114,7 +139,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
 
     class SanPhamViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtTenSp,txtMoTaSP,txtGiaSP,txtSoLuongSP;
+        TextView txtTenSp,txtMoTaSP,txtGiaSP,txtSoLuongSP, txtStatusSP;
         ImageView imgSP;
         ImageButton btnEdit,btnDelete;
 
@@ -124,6 +149,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
             txtTenSp = itemView.findViewById(R.id.idTenSanPham);
             txtMoTaSP = itemView.findViewById(R.id.idMoTaSanPham);
             txtGiaSP = itemView.findViewById(R.id.idGiaSanPham);
+            txtStatusSP = itemView.findViewById(R.id.idStatusSanPham);
 
             imgSP = itemView.findViewById(R.id.imgSanPham);
             btnEdit = itemView.findViewById(R.id.btnSua);
@@ -154,13 +180,13 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
             }
         });
     }
-    private void upDateSp(String _id , String imgsrc ,String NameSp,String MoTa, String gia) {
+    private void upDateSp(String _id , String imgsrc ,String NameSp,int MoTa,int gia, int status) {
 
 
 
     }
-    private void callApiUpdateSp(String edtten, String edtImg, String edtGia, String edtmota) {
-            SanPham sanPham = new SanPham(null,edtten,edtGia,edtmota,edtImg);
+    private void callApiUpdateSp(String edtten, String edtImg, String edtGia, String edtmota, String status) {
+            SanPham sanPham = new SanPham(null,edtten,edtGia,edtmota,edtImg, status);
 
             apiService.Apiservice.updateSP(sanPham).enqueue(new Callback<SanPham>() {
                 @Override

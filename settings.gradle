@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ASM_PH28014"
+rootProject.name = "thi_Android_PH28014"
 include ':app'

@@ -1,22 +1,29 @@
 package binhntph28014.fpoly.asm_ph28014.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SanPham {
 
     private String _id;
-    private String nameproduct;
-    private String price;
+    @SerializedName("tensv")
+    private String tensv;
+    @SerializedName("tuoi")
+    private String tuoi;
+    @SerializedName("status")
+    private String status;
     private String image;
+    @SerializedName("diemtb")
+    private String diemtb;
 
-    private String description;
 
-    public SanPham(String _id, String nameproduct, String price, String image, String description) {
+    public SanPham(String _id, String tensv, String tuoi, String status, String image, String diemtb) {
         this._id = _id;
-        this.nameproduct = nameproduct;
-        this.price = price;
+        this.tensv = tensv;
+        this.tuoi = tuoi;
+        this.status = status;
         this.image = image;
-        this.description = description;
+        this.diemtb = diemtb;
     }
-
 
     public String get_id() {
         return _id;
@@ -26,20 +33,28 @@ public class SanPham {
         this._id = _id;
     }
 
-    public String getNameproduct() {
-        return nameproduct;
+    public String getTensv() {
+        return tensv;
     }
 
-    public void setNameproduct(String nameproduct) {
-        this.nameproduct = nameproduct;
+    public void setTensv(String tensv) {
+        this.tensv = tensv;
     }
 
-    public String getPrice() {
-        return price;
+    public String getTuoi() {
+        return tuoi;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setTuoi(String tuoi) {
+        this.tuoi = tuoi;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImage() {
@@ -50,11 +65,11 @@ public class SanPham {
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDiemtb() {
+        return diemtb;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDiemtb(String diemtb) {
+        this.diemtb = diemtb;
     }
 }

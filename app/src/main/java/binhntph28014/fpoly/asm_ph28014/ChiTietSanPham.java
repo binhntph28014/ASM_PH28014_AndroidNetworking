@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class ChiTietSanPham extends AppCompatActivity {
     ImageView imganh;
-    TextView txtTenSp,txtGiaSp,txtSoLuongSp,txtMoTaSp;
+    TextView txtTenSp,txtGiaSp,txtSoLuongSp,txtMoTaSp, txtStatus;
     
     SanPham lstSp;
     @Override
@@ -31,7 +31,7 @@ public class ChiTietSanPham extends AppCompatActivity {
         imganh = findViewById(R.id.imgAnh_sanpham_chitiet);
         txtTenSp = findViewById(R.id.tvTen_sanpham_chitiet);
         txtGiaSp = findViewById(R.id.tvGia_sanpham_chitiet);
-        txtSoLuongSp = findViewById(R.id.tvSo_luong);
+        txtStatus = findViewById(R.id.txtStatussp);
         txtMoTaSp = findViewById(R.id.txtMotasp);
         Intent intent = getIntent();
 
@@ -47,7 +47,7 @@ public class ChiTietSanPham extends AppCompatActivity {
     }
 
     private void CallApiChitietSp(String id) {
-        SanPham sanPham = new SanPham(id,null,null,null,null);
+        SanPham sanPham = new SanPham(id,null,null,null, null,null);
 
         apiService.Apiservice.ChitietSP(sanPham).enqueue(new Callback<SanPham>() {
             @Override
@@ -57,10 +57,10 @@ public class ChiTietSanPham extends AppCompatActivity {
 
                     if (lstSp != null) {
 
-                        txtTenSp.setText(lstSp.getNameproduct());
-                        txtGiaSp.setText(lstSp.getPrice());
-//        txtSoLuongSp.setText(lstSp.get);
-                        txtMoTaSp.setText(lstSp.getDescription());
+                        txtTenSp.setText(lstSp.getTensv());
+                        txtGiaSp.setText(lstSp.getTuoi());
+                        txtStatus.setText(lstSp.getStatus());
+                        txtMoTaSp.setText(lstSp.getDiemtb());
                         Picasso.get().load(Uri.parse(lstSp.getImage())).into(imganh);
 
                     }
@@ -70,12 +70,6 @@ public class ChiTietSanPham extends AppCompatActivity {
                     Log.e("API_CALL_ERROR", "Error code: " + response.code());
 
                 }
-
-
-
-
-
-
 
             }
 

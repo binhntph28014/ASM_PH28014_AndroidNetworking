@@ -1,6 +1,9 @@
 package binhntph28014.fpoly.asm_ph28014.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class auth {
+
         String username;
         String email;
         String password;
